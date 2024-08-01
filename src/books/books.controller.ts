@@ -1,8 +1,10 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -11,33 +13,89 @@ import { BooksService } from './books.service';
 import { ResponseDto } from 'src/dto/response.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { Book } from './models/book.model';
 
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
   @Post()
-  create(@Body() createBookDto: CreateBookDto): Promise<ResponseDto<any>> {
-    return this.booksService.create(createBookDto);
+  async create(
+    @Body() createBookDto: CreateBookDto,
+  ): Promise<ResponseDto<Book | void>> {
+    try {
+      const result = await this.booksService.create(createBookDto);
+      return {
+        message: 'Book created succesfully!',
+        success: true,
+        data: [result],
+      };
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 
   @Get()
-  findAll(): Promise<ResponseDto<any>> {
-    return this.booksService.findAll();
+  async findAll(): Promise<ResponseDto<Book | void>> {
+    try {
+      const result = await this.booksService.findAll();
+      return {
+        message: 'Books retrived succesfully!',
+        success: true,
+        data: result,
+      };
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<ResponseDto<any>> {
-    return this.booksService.findOne(+id);
+  async findOne(@Param('id') id: string): Promise<ResponseDto<Book | void>> {
+    try {
+      const result = await this.booksService.findOne(+id);
+      if (result == null) throw new NotFoundException();
+      return {
+        message: 'Book retrived succesfully!',
+        success: true,
+        data: [result],
+      };
+    } catch (error) {
+      if (error.status == 404) {
+        throw new NotFoundException();
+      }
+
+      throw new BadRequestException();
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-    return this.booksService.update(+id, updateBookDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateBookDto: UpdateBookDto,
+  ): Promise<ResponseDto<any>> {
+    try {
+      const result = await this.booksService.update(+id, updateBookDto);
+      return {
+        message: `${result[0]} Changes updated succesfully!`,
+        success: true,
+        data: [],
+      };
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.booksService.remove(+id);
+  async remove(@Param('id') id: string): Promise<ResponseDto<any>> {
+    try {
+      const result = await this.booksService.remove(+id);
+      return {
+        message: `${result[0]} Book(s) deleted succesfully!`,
+        success: true,
+        data: [],
+      };
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 }
