@@ -8,12 +8,14 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { ResponseDto } from 'src/dto/response.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './models/book.model';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('books')
 export class BooksController {
@@ -36,6 +38,7 @@ export class BooksController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   async findAll(): Promise<ResponseDto<Book | void>> {
     try {
       const result = await this.booksService.findAll();
