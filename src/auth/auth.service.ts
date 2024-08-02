@@ -45,4 +45,8 @@ export class AuthService {
       throw error;
     }
   }
+
+  async remove(username: string): Promise<any> {
+    return this.usersService.remove(username);
+  }
 }

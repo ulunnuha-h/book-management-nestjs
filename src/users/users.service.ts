@@ -17,4 +17,8 @@ export class UsersService {
   async create(createUserDto: CreateUserDto): Promise<any> {
     return this.userModel.create(createUserDto);
   }
+
+  async remove(username: string): Promise<any> {
+    return this.userModel.destroy({ where: { username } });
+  }
 }

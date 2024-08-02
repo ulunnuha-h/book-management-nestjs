@@ -15,7 +15,7 @@ import { ResponseDto } from 'src/dto/response.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './models/book.model';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('books')
 export class BooksController {

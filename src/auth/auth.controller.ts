@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Post,
+  Req,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -35,12 +37,18 @@ export class AuthController {
     try {
       const result = await this.authService.signUp(createUserDto);
       return {
-        message: 'User registered succesfully!',
+        message: 'User registered successfully!',
         success: true,
         data: [result],
       };
     } catch (error) {
       throw error;
     }
+  }
+
+  @Delete('delete')
+  @UseGuards(AuthGuard)
+  async remove(@Request() req: any) {
+    await this.authService.remove(req.user.username);
   }
 }
