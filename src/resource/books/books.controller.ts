@@ -14,7 +14,7 @@ import { BooksService } from './books.service';
 import { ResponseDto } from 'src/shared/dto/response.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
-import { Book } from './models/book.model';
+import { Book } from './entities/book.model';
 import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('books')
