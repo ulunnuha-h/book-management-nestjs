@@ -8,9 +8,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { ResponseDto } from 'src/dto/response.dto';
-import { User } from 'src/users/models/user.model';
+import { CreateUserDto } from 'src/resource/users/dto/create-user.dto';
+import { ResponseDto } from 'src/shared/dto/response.dto';
+import { User } from 'src/resource/users/models/user.model';
 import { SignInDto } from './dto/sign-in.dto';
 import { AuthGuard } from './auth.guard';
 

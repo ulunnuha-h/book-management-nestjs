@@ -12,8 +12,8 @@ import {
 import { ChaptersService } from './chapters.service';
 import { CreateChapterDto } from './dto/create-chapter.dto';
 import { UpdateChapterDto } from './dto/update-chapter.dto';
-import { ResponseDto } from 'src/dto/response.dto';
-import { BooksService } from 'src/books/books.service';
+import { ResponseDto } from 'src/shared/dto/response.dto';
+import { BooksService } from 'src/resource/books/books.service';
 
 @Controller('chapters')
 export class ChaptersController {
