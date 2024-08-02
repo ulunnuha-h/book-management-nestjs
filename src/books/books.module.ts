@@ -9,5 +9,6 @@ import { AuthModule } from '../auth/auth.module';
   imports: [SequelizeModule.forFeature([Book]), AuthModule],
   controllers: [BooksController],
   providers: [BooksService],
+  exports: [BooksService],
 })
 export class BooksModule {}

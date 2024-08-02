@@ -6,9 +6,10 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { getSequalizeConfig } from './config/sequalize.config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ChaptersModule } from './chapters/chapters.module';
 
 @Module({
-  imports: [BooksModule, SequelizeModule.forRoot(getSequalizeConfig()), AuthModule, UsersModule],
+  imports: [BooksModule, SequelizeModule.forRoot(getSequalizeConfig()), AuthModule, UsersModule, ChaptersModule],
   controllers: [AppController],
   providers: [AppService],
 })
