@@ -18,6 +18,7 @@ import { Book } from './models/book.model';
 import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('books')
+@UseGuards(AuthGuard)
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
@@ -38,7 +39,6 @@ export class BooksController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
   async findAll(): Promise<ResponseDto<Book | void>> {
     try {
       const result = await this.booksService.findAll();
