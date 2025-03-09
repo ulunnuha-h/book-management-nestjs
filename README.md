@@ -1,6 +1,6 @@
 ## Deskripsi Projek
 
-Book Management APIs adalah layanan yang memungkinkan seseorang untuk menambah, membaca, memperbarui, dan menghapus data buku. Proyek ini dibuat sebagai bagian dari tugas untuk pendaftaran magang di DOT Indonesia sebagai Backend Developer.
+Book Management APIs adalah layanan yang memungkinkan seseorang untuk menambah, membaca, memperbarui, dan menghapus data buku.
 
 Dalam proyek ini, saya sering menggunakan Design Pattern Decorator. Pada setiap file di resource, seperti controller atau service, terdapat penggunaan decorator yang mempermudah pengembangan aplikasi.
 
